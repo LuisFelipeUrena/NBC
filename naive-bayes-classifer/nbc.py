@@ -13,7 +13,7 @@ class NaiveBayesClassifier:
         
         self._mean = np.zeros((n_classes, n_features), dtype=np.float64) # mean
         self._var = np.zeros((n_classes, n_features), dtype=np.float64) #variance
-        self.prior = np.zeros(n_classes,dtype=np.float64) #prior probabilities
+        self._prior = np.zeros(n_classes,dtype=np.float64) #prior probabilities
 
         for i, c in enumerate(self._classes):
             x_classes = x[y==c]
@@ -38,7 +38,7 @@ class NaiveBayesClassifier:
 
     def _pdf(self,class_ids,x):
         mean = self._mean[class_ids]
-        var = self_var[class_ids]
+        var = self._var[class_ids]
         
         numerator = np.exp(- (x-mean)**2 / (2 * var))
         denominator = np.sqrt(2 * np.pi * var)
